@@ -14,48 +14,17 @@ let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
 
-let questions = [
-    {
-        question: "what is your father name",
-        choice1: "mohan",
-        choice2: "sohan",
-        choice3: "raju",
-        choice4: "raza",
-        answer: 1
-    },
-    {
-        question: "what is your mother name",
-        choice1: "sita",
-        choice2: "rita",
-        choice3: "kamla",
-        choice4: "rani",
-        answer: 3
-    },
-    {
-        question: "what is your brother name",
-        choice1: "sonu",
-        choice2: "monu",
-        choice3: "golu",
-        choice4: "chotu",
-        answer: 2
-    },
-    {
-        question: "what is your sister name",
-        choice1: "jaya",
-        choice2: "rekha",
-        choice3: "sushma",
-        choice4: "karishma",
-        answer: 4
-    },
-    {
-        question: "what is your son name",
-        choice1: "sahil",
-        choice2: "sonal",
-        choice3: "pintu",
-        choice4: "panda",
-        answer: 3
-    }
-]
+let questions = []
+
+fetch("questions.json")
+    .then(res => {
+        return res.json();
+    })
+    .then(loadedQuestions => {
+        console.log(loadedQuestions)
+        questions = loadedQuestions
+        startGame()
+    });
 
 // constants
 const correct_bonus = 10
@@ -129,5 +98,4 @@ incrementScore = num => {
     ScoreText.innerText = score
 }
 
-startGame()
-console.log("complete")
+

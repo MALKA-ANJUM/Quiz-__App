@@ -42,7 +42,6 @@ h3{
     align-items: center;
     max-width: 80rem;
     margin: 0 auto;
-    border: 1px solid red;
     padding: 2rem;
 }
 .container > *{
