@@ -5,6 +5,8 @@ const choices = Array.from(document.getElementsByClassName("choice-text"))
 // console.log(choices);
 // dataset --> it is a custom property and anything that's prefix with data will  basically become a property on that node so its strips are data-part
 const progressText = document.getElementById("progressText")
+const loader = document.getElementById("loader")
+const game = document.getElementById("game")
 const ScoreText = document.getElementById("score")
 const progressBarFull = document.getElementById("progressBarFull")
 
@@ -35,6 +37,7 @@ fetch("https://opentdb.com/api.php?amount=10&category=17&difficulty=easy&type=mu
             })
             return formattedQuestion
         })
+        
         //questions = loadedQuestions
         startGame()
     })
@@ -44,7 +47,7 @@ fetch("https://opentdb.com/api.php?amount=10&category=17&difficulty=easy&type=mu
 
 // constants
 const correct_bonus = 10
-const max_questions = 5
+const max_questions = 10
 
 startGame = () => {
     questionCounter = 0
@@ -52,6 +55,8 @@ startGame = () => {
     availableQuestions = [ ...questions]
     // console.log(availableQuestions);
     getNewQuestion()
+    game.classList.remove("hidden")
+        loader.classList.add("hidden")
 }
 getNewQuestion = () => {
     if(availableQuestions.length === 0 || questionCounter >= max_questions) {
