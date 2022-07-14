@@ -23,14 +23,18 @@ fetch("https://opentdb.com/api.php?amount=10&category=17&difficulty=easy&type=mu
         return res.json();
     })
     .then(loadedQuestions => {
-        console.log(loadedQuestions.results)
+        //console.log(loadedQuestions.results)
         questions = loadedQuestions.results.map(loadedQuestion => {
             const formattedQuestion = {
                 question: loadedQuestion.question
             }
             const answerChoice =[...loadedQuestion.incorrect_answers]
             formattedQuestion.answer = Math.floor(Math.random() * 3) + 1;
-            answerChoice.splice(formattedQuestion.answer - 1, 0, loadedQuestion.incorrect_answers)
+            answerChoice.splice(
+                formattedQuestion.answer - 1,
+                0,
+                loadedQuestion.correct_answer)
+
 
             answerChoice.forEach((choice, index) => {
                 formattedQuestion["choice" + (index+1)] = choice
